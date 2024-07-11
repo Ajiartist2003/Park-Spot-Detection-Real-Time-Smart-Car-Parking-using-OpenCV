@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" >
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  
+    <title>Document</title>
+</head>
+<style>
+  #w {
+    padding-right: 970px;
+    padding-top: 50px;
+
+  }
+  #k {
+    width: 200px;
+  }
+  #ee {
+    font-weight: 500;
+    font-size: 80px;
+    font-style: oblique;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(89, 151, 243);
+    padding-bottom: 300px;
+    text-shadow: 2px 2px 2px black;
+    -webkit-text-stroke: 1px black; 
+  }
+  #ww {
+    margin-left: -300px;
+  }
+  body {
+    overflow-y: hidden; 
+  }
+  .car-icon {
+    color: black; 
+    padding-top: 40px;                    
+  }
+  .road-icon {
+    color: rgb(89, 151, 243);
+    margin-left: -85px;
+  }
+  #dd {
+    margin-left: 10px;
+  }
+  #ff {
+    margin-left: 10px;
+    margin-right: -50px;
+  }
+  #zz {
+    margin-left: 0px;
+  }
+  #l {
+    padding-top: 150px;
+    padding-left: 650px;
+  }
+</style>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+      <div class="container">  
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="navbar-brand" href="#"> <img src="{% static '/img/park.png'%} " alt="" height="100px" width="130px" style="border-radius:3%; margin-top: -10px; margin-left: -80px;" ></a>
+            </li>
+          </ul> 
+          
+          <div class="d-flex align-items-center">
+            {% if request.user.is_authenticated %}
+            <a
+              data-mdb-ripple-init
+              class="btn btn-dark px-3"
+              href="https://github.com/Ajiartist2003" 
+              target="_blank"
+              role="button"
+              ><i class="fab fa-github" id="zz"></i
+            ></a>
+            <form action="{% url 'logout'  %}" method="post">
+              {% csrf_token %}
+              <button type="submit" data-mdb-ripple-init class="btn btn-danger px-3" id="dd">
+                  Logout
+              </button>
+            </form>  
+            <a class="btn btn-secondary px-3" href="#" role="button" aria-expanded="false" id="ff">{{request.user|capfirst}}</a>
+            {% else %}
+            <button data-mdb-ripple-init type="button" class="btn btn-success px-3 me-2" style="text-decoration: none;"><a href="{% url 'login' %}" style="text-decoration: none; color
+              :azure">Login</a>
+            </button>
+            <button data-mdb-ripple-init type="button" class="btn btn-info px-3 me-3" style="text-decoration: none;">
+              <a href="{% url 'customerregistration' %}" style="text-decoration: none; color:black">Sign up for free</a>
+            </button>
+            {% endif %}
+                    
+          </div>
+        </div>      
+      </div>
+    </nav>
+    <div id="carouselExample" class="carousel slide position-relative">
+      <div class="carousel-inner">
+          <div class="carousel-item active">
+              <img src="{% static "/img/carpark.jpg" %}" class="d-block w-100" alt="..." height="860px">
+              <div class="position-absolute top-50 start-50 translate-middle" id="ww">
+                <label for="" id="ee">The Best way to <br> Park a Car  <span><i class="fas fa-road  car-icon"></i></span><i class="fas fa-car road-icon"></i></label>
+              </div>
+              <div class="position-absolute top-50 start-50 translate-middle" id="w">
+                  <button type="button" class="btn btn-outline-info btn-lg" id="k" onclick="startVideo()"> <a href="{% url 'video' %}" style="text-decoration: none; color:black;">Let's Park</a></button>
+              </div>
+              <div class="position-absolute top-50 start-50 translate-left" id="l">
+                <button type="button" id="contact-button" style="border-radius: 20px; height:40px" onclick="startVideo1()"><a href="{% url 'contact' %}" style="text-decoration: none; color:black;" target="_blank">Contact me!</a></button> 
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <script>
+      function startVideo() {
+          window.location.href = "{% url 'video' %}";  
+      }
+      function startVideo1() {
+        window.location.href = "{% url 'contact' %}";  
+    }
+
+  </script>
+
+    {%block banner-slider %} {% endblock banner-slider %}
+    {%block main-content %} {% endblock main-content %}
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+    <script src="{% static 'js/all.min.js' %}"></script>
+
+    <script src="{% static 'js/myscript.js' %}"></script>                                   
+</body>
+</html>
