@@ -11,7 +11,7 @@
 
 ## Screenshots
 ### Home Page 
-![Home Page](screenshots/home.png)
+![Home Page](home.png)
 ### Car Detection Page 
-![Home Page](screenshots/car.png)
+![Home Page](car.png)
 
